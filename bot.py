@@ -22,7 +22,7 @@ if not os.path.exists('thumbs'):
 
 helper = helpers()
 app = Client("my_account", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
-ADMIN_LIST = [1146062784] #users get whitelisted on the whitelist file, admin can add users to the whitelist using the bot.
+ADMIN_LIST = [] #users get whitelisted on the whitelist file, admin can add users to the whitelist using the bot.
 
 def is_admin(id):
     if id not in ADMIN_LIST:
@@ -39,7 +39,7 @@ def handle_video(url, file_name, chat_id, caption, uid):
             if os.path.isfile('thumbs/thumb_' + str(uid)):
                 message = app.send_video(chat_id, PATH + file_name, caption, thumb='thumbs/thumb_' + str(uid), duration=duration) 
             elif thumb != 'null':
-                message = app.send_video(chat_id, PATH + file_name, caption, 'thumbs/' + thumb, duration=duration)
+                message = app.send_video(chat_id, PATH + file_name, caption, thumb='thumbs/' + thumb, duration=duration)
             else:
                 message = app.send_video(chat_id, PATH + file_name, caption, duration=duration)
         except:
